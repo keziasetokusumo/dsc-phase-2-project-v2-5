@@ -1,4 +1,4 @@
-# Overview and Problem Statement
+### Overview and Problem Statement
 The focus for this project is to use data from the Ames Housing Dataset to create a regression model that projects the sale price of properties in the area.
 
 The scope of this project includes data cleaning, initial exploratory analysis, model improvement with additional or transformed variables, final recommendation, and overall evaluation.
