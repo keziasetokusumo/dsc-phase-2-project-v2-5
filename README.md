@@ -28,10 +28,10 @@ A correlation heatmap is first generated to identify which variable might serve 
 
 Based on the heatmap, a baseline model showing the relationship between 'sqft_living' and 'price' is run. The summary of the results and a basic visualization are shown below:
 
-# Summary Table
+### Summary Table
 <img width="667" alt="Screen Shot 2023-03-06 at 9 24 01 PM" src="https://user-images.githubusercontent.com/111642763/223303635-6e5961f4-2b3c-482d-b268-9b24e8beed31.png">
 
-# Graph
+### Graph
 <img width="661" alt="Screen Shot 2023-03-06 at 9 27 19 PM" src="https://user-images.githubusercontent.com/111642763/223303749-9a1c879c-26a8-4597-872f-8e3b1ba585fd.png">
 
 Note that living area data has been centered around its mean, hence the negative values on the x-axis in the graph above.
