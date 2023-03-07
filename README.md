@@ -26,7 +26,7 @@ A correlation heatmap is first generated to identify which variable might serve 
 
 <img width="872" alt="Screen Shot 2023-03-06 at 9 21 27 PM" src="https://user-images.githubusercontent.com/111642763/223302941-f4bde8db-dbf2-4714-97ab-c6e48555a48c.png">
 
-Based on the heatmap, a baseline model showing the relationship between 'sqft_living' and 'price' is run. The summary of the results and a basic visualization are shown below:
+Based on the heatmap, a baseline model showing the relationship between 'sqft_living' and 'price' is run, as these two variables have the highest correlation (0.64). The summary of the results and a basic visualization are shown below:
 
 ### Summary Table
 <img width="667" alt="Screen Shot 2023-03-06 at 9 24 01 PM" src="https://user-images.githubusercontent.com/111642763/223303635-6e5961f4-2b3c-482d-b268-9b24e8beed31.png">
