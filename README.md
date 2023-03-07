@@ -1,5 +1,7 @@
 # Home Values in Kings County
 
+Reducing information asymmetry in home prices
+
 ![rowan-heuvel-bjej8BY1JYQ-unsplash](https://user-images.githubusercontent.com/111642763/223301762-394731ca-4447-4c2f-a6fd-c9c8fef6dd33.jpg)
 
 ### Overview and Problem Statement
