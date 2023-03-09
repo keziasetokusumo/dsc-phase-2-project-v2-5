@@ -47,4 +47,10 @@ A graph displaying "sqft_living" along the x-axis and "price" along the y-axis i
 Note that living area data has been centered around its mean, hence the negative values on the x-axis in the graph above.
 
 ### Second Model (Numerical Predictors Only)
-To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, "bathrooms" is selected for the next run.
+To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, "bathrooms" is selected for the next run to create a multiple regression model. The "bathrooms" column is also centered around the mean to make the data more interpretable later. The below dataframe is passed into statsmodels to generate a new summary table:
+
+<img width="242" alt="Screen Shot 2023-03-08 at 9 11 27 PM" src="https://user-images.githubusercontent.com/111642763/223897809-40f15d11-a0f9-483c-8e2b-284a45905acb.png">
+
+<img width="673" alt="Screen Shot 2023-03-08 at 9 12 34 PM" src="https://user-images.githubusercontent.com/111642763/223897961-1b9ea412-b5a9-48ea-a1f4-7eaa2fbf9364.png">
+
+In terms of the R-squared value, the second model is only slightly better than the first, with 41% of the variation in price accounted for. Similar to the baseline model, a home with an average living area and average number of bathrooms can expect to have a price tag of ~$1.22M. The new parameter value for "sqft_living" shows that under these conditions, an additional unit increase in SF living area increases price by ~$530. Additionally, the parameter for "bathrooms" convey that an additional bathroom in the home raises the value by ~$143K.
