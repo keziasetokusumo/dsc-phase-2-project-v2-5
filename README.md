@@ -22,16 +22,29 @@ The data folder in the repository contains the file kc_house_data.csv, which is 
 Analysis of home prices in Kings County begins with a baseline regression model. Using the correlation function, an initial predictor is selected. In this case, a baseline regression model is run to show the relationship between home prices ('price') and living area ('sqft_living'). Data cleaning and centering takes place at this stage. After the parameters from the baseline results are evaluated, another numerical predictor is added to create a second model. After two models with only numerical predictors have been run, a third and fourth model containing categorical variables is created to improve the analysis. Throughout the creation of the four models, different variables were tested to determine which ones were statistically significant. The final model builds on the fourth regression (a combination of numerical and categorical predictors) by including interaction terms. The variables in the fourth model are tested for interaction effects, and statistically significant terms are incorporated to construct the fifth and final model.
 
 ## Results
+
+### Baseline Model
+
 A correlation heatmap is first generated to identify which variable might serve as a good independent variable for the baseline model:
 
 <img width="872" alt="Screen Shot 2023-03-06 at 9 21 27 PM" src="https://user-images.githubusercontent.com/111642763/223302941-f4bde8db-dbf2-4714-97ab-c6e48555a48c.png">
 
-Based on the heatmap, a baseline model showing the relationship between 'sqft_living' and 'price' is run, as these two variables have the highest correlation (0.64). The summary of the results and a basic visualization are shown below:
+Based on the heatmap, a baseline model showing the relationship between "sqft_living" and "price" is run, as these two variables have the highest correlation (0.64). A baseline model that centers "sqft_living" around its mean is created. The summary of the results and a basic visualization are shown below.
 
-### Summary Table
 <img width="667" alt="Screen Shot 2023-03-06 at 9 24 01 PM" src="https://user-images.githubusercontent.com/111642763/223303635-6e5961f4-2b3c-482d-b268-9b24e8beed31.png">
 
-### Graph
+The following interpretations can be made from the summary:
+* 40.5% of the variation in price can be explained by the baseline model
+* The p-values for the parameters "const" and "sqft_living" are less than 0.05, indicating their statistical significance
+* The overall model also has a p-value < 0.05; hence, it can be interpreted to be statistically significant
+* The coefficient value for "sqft_living" suggests that a unit increase in SF living area corresponds to an increase in home price by ~$609
+* The "const" value suggests that we can expect a home with average living area to sell for ~$1.22M
+
+A graph displaying "sqft_living" along the x-axis and "price" along the y-axis is shown below:
+
 <img width="661" alt="Screen Shot 2023-03-06 at 9 27 19 PM" src="https://user-images.githubusercontent.com/111642763/223303749-9a1c879c-26a8-4597-872f-8e3b1ba585fd.png">
 
 Note that living area data has been centered around its mean, hence the negative values on the x-axis in the graph above.
+
+### Second Model (Numerical Predictors Only)
+To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, "bathrooms" is selected for the next run.
