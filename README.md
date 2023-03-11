@@ -67,4 +67,8 @@ Since we dropped grade_7 Average and used it as the reference category, the mode
 Overall, the third model accounts for 51% of the variance in price.
 
 ### Fourth Model (Remaining Categorical Predictors)
-Other categorical variables that were deemed relevant during the initial data exploration are included in the fourth model. Similar to the third model, one-hot-encoding is done and one dummy column is excluded to avoid multicollinearity. 
+Other categorical variables that were deemed relevant during the initial data exploration are included in the fourth model. We have utilized "waterfront" and "sewer_system". Similar to the third model, one-hot-encoding is done and one dummy column is excluded to avoid multicollinearity.
+
+In this run, we have dropped the variables that did not make a statistically significant difference on home price. The summary printout is as follows:
+
+<img width="839" alt="Screen Shot 2023-03-11 at 10 24 30 AM" src="https://user-images.githubusercontent.com/111642763/224492853-29ce25d4-1eac-4030-9c18-4835c64397a1.png">
