@@ -19,7 +19,7 @@ The data folder in the repository contains the file kc_house_data.csv, which is 
 <img width="1095" alt="Screen Shot 2023-03-04 at 6 13 39 PM" src="https://user-images.githubusercontent.com/111642763/222932863-70c7cdf6-0b98-4258-8539-fb0dc4810d5b.png">
 
 ## Methods
-Analysis of home prices in Kings County begins with a baseline regression model. Using the correlation function, an initial predictor is selected. In this case, a baseline regression model is run to show the relationship between home prices ('price') and living area ('sqft_living'). Data cleaning and centering takes place at this stage. After the parameters from the baseline results are evaluated, another numerical predictor is added to create a second model. After two models with only numerical predictors have been run, a third and fourth model containing categorical variables is created to improve the analysis. Throughout the creation of the four models, different variables were tested to determine which ones were statistically significant. The final model builds on the fourth regression (a combination of numerical and categorical predictors) by including interaction terms. The variables in the fourth model are tested for interaction effects, and statistically significant terms are incorporated to construct the fifth and final model.
+Analysis of home prices in Kings County begins with a baseline regression model. Using the correlation function, an initial predictor is selected. In this case, a baseline regression model is run to show the relationship between home prices ("price") and living area ("sqft_living"). Data cleaning and centering takes place at this stage. After the parameters from the baseline results are evaluated, another numerical predictor is added to create a second model. After two models with only numerical predictors have been run, a third and fourth model containing categorical variables is created to improve the analysis. Throughout the creation of the four models, different variables were tested to determine which ones were statistically significant. The final model builds on the fourth regression (a combination of numerical and categorical predictors) by including interaction terms. The variables in the fourth model are tested for interaction effects, and statistically significant terms are incorporated to construct the fifth and final model.
 
 ## Results
 
@@ -54,3 +54,16 @@ To account for other variables that may impact the price of homes in Kings Count
 <img width="673" alt="Screen Shot 2023-03-08 at 9 12 34 PM" src="https://user-images.githubusercontent.com/111642763/223897961-1b9ea412-b5a9-48ea-a1f4-7eaa2fbf9364.png">
 
 In terms of the R-squared value, the second model is only slightly better than the first, with 41% of the variation in price accounted for. Similar to the baseline model, a home with an average living area and average number of bathrooms can expect to have a price tag of ~$1.22M. The new parameter value for "sqft_living" shows that under these conditions, an additional unit increase in SF living area increases price by ~$530. Additionally, the parameter for "bathrooms" conveys that an additional bathroom in the home raises the value by ~$143K.
+
+### Third Model (Categorical Predictor)
+During the early exploration stage, only numerical predictors were considered. The third model builds on the second by incorporating the categorical variable "grade" to assess the impact of a home's rating on its price. To avoid multicollinearity, we perform one-hot-encoding and drop the column "grade_7 Average". A home grade of 7 becomes the reference category. Results are shown below:
+
+<img width="747" alt="Screen Shot 2023-03-11 at 9 57 17 AM" src="https://user-images.githubusercontent.com/111642763/224491521-cfa1c63b-a7b5-466e-b3f7-2ef7dfeee3a3.png">
+
+Homes with grades 2 to 6 inclusive are not statistically significant, as p-values are <0.05. This suggests that for homes of substandard to low average quality, there is an insignificant impact on the selling price, which makes sense in this scenario.
+
+Since we dropped grade_7 Average and used it as the reference category, the model indicates that a home with an average grade, average living area, and average number of bathrooms sells for around $927K (the constant). Additionally, a unit increase in "sqft_living" and "bathrooms" is expected to increase the value of the average home by $250 and $1.38M, respectively.
+
+Overall, the third model accounts for 51% of the variance in price.
+
+### Fourth Model (Remaining Categorical Predictors
