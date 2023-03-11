@@ -82,3 +82,21 @@ The fourth model accounts for ~54% of the variance in sale price and models agai
 
 Based on the constant coefficient, a home with the aforementioned features can be expected to have a sale price around $941K. With the additional variables, homes with restricted sewer systems lack a statistically significant impact. Of the additional variables, "waterfront_YES" and "sewer_system_PRIVATE" have p-values < 0.05, and they are associated with a $1.45M and -$150K change in sale price, respectively.
 
+### Summarizing the four models
+Iterating through the four regressions have shown us that certain variables do not create a statistically significant difference on home prices in Kings County. Through multiple linear regression and one-hot-encoding with categories, the predictors that do not contribute to the model tend to be ones that are less favorable in a home.
+
+To recap, the variables with p-values > 0.05 are the ones representing grades 2-6 and restricted sewer systems. To better understand this observation, two seaborn visualizations showing the relationship between "price" and "sqft_living" with hues based on "grade" and "sewer_system" were created:
+
+<img width="932" alt="Screen Shot 2023-03-11 at 11 13 42 AM" src="https://user-images.githubusercontent.com/111642763/224495292-0d5564e7-e18a-4d1e-a178-68f81d6fe86e.png">
+
+Starting with the graph on the left, we can interpret that darker hues tend to be more spread out and the lighter hues are clustered around the left/bottom. The lighter hues have low home grades, which we previously concluded has minimal impact on the model run.
+
+Moving on to the graph on the right, we can also see that points on the graph primarily represent public and private sewer systems that are not restricted.
+
+Overall, we can see how the less favorable variables of low home grades and restricted sewer systems have a minimal impact on price when compared to a home with average features. This logical conclusion can be drawn from the regression models and visualizations above.
+
+To refresh, below is a dataframe summarizing all the regression models that have been constructed thus far:
+
+<img width="607" alt="Screen Shot 2023-03-11 at 11 25 33 AM" src="https://user-images.githubusercontent.com/111642763/224495862-9f43175a-a6bd-4e35-a481-7e5640f080f5.png">
+
+### Final Model 
