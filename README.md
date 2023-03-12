@@ -110,7 +110,7 @@ Considering that these variables are statistically significant, we pass them thr
 
 <img width="731" alt="Screen Shot 2023-03-11 at 7 59 04 PM" src="https://user-images.githubusercontent.com/111642763/224518556-228fbff8-d60c-41ea-955c-d028b25f3516.png">
 
-A combination of numerical measures, categorical variables, and the creation of an interaction term improves the R-squared to ~55%.
+A combination of numerical measures, categorical variables, and an interaction term improves the R-squared to ~55%.
 
 ## Conclusion
 Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a given property compares to the average home in King County. Compared to properties with standard features (average bathrooms, average area, average rating), high home grades have a statistically significant impact on price. Additionally, adjusting variables within a home that has certain "nice-to-have" amenities, such as a waterfront, has a greater impact on value. This is shown through the interaction term "sqft_living x waterfront_YES", which indicates that a unit increase in "sqft_living" for an average-sized home with a waterfront adds ~$538 instead of just $243. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
