@@ -62,7 +62,7 @@ During the early exploration stage, only numerical predictors were considered. T
 
 <img width="750" alt="Screen Shot 2023-03-11 at 10 05 43 AM" src="https://user-images.githubusercontent.com/111642763/224491940-699e7522-2176-4746-b621-5bb51ec082ce.png">
 
-Homes with grades 2 to 6 inclusive are not statistically significant, as p-values are <0.05. This suggests that for homes of substandard to low average quality, there is an insignificant impact on the selling price, which makes sense in this scenario.
+Homes with grades 2 to 6 inclusive are not statistically significant, as p-values are >0.05. This suggests that for homes of substandard to low average quality, there is an insignificant impact on the selling price, which makes sense in this scenario.
 
 Since we dropped grade_7 Average and used it as the reference category, the model indicates that a home with an average grade, average living area, and average number of bathrooms sells for around $927K (the constant). Additionally, a unit increase in "sqft_living" and "bathrooms" is expected to increase the value of the average home by $250 and $138K, respectively.
 
