@@ -100,18 +100,18 @@ To refresh, below is a dataframe summarizing all the regression models that have
 <img width="607" alt="Screen Shot 2023-03-11 at 11 25 33 AM" src="https://user-images.githubusercontent.com/111642763/224495862-9f43175a-a6bd-4e35-a481-7e5640f080f5.png">
 
 ### Final Model
-A final model is constructed using the original four regressions to create interaction terms with the relevant predictors. The original numerical predictor "sqft_living" is used to create an interaction term with one dummy variable from each of the categorical predictors. A new dataframe is created, and each interaction term is tested for statistical significance. A final table showing the statistically significant variables thus far and the new interaction terms are shown below:
+A final model is constructed using the original four regressions to create interaction terms with the relevant predictors. The original numerical predictor "sqft_living" is used to create an interaction term with the remaining dummy variable from "waterfront". A new dataframe is created, and a final table showing the statistically significant term and variables are shown below:
 
-<img width="297" alt="Screen Shot 2023-03-11 at 7 10 38 PM" src="https://user-images.githubusercontent.com/111642763/224517177-2c9fe651-ec37-4009-85f0-d1e92982ace7.png">
+<img width="302" alt="Screen Shot 2023-03-11 at 7 59 08 PM" src="https://user-images.githubusercontent.com/111642763/224518550-f1439a29-4423-423a-b58e-ff17bef52c41.png">
 
 Lastly, the summary table of the final model is generated:
 
-<img width="738" alt="Screen Shot 2023-03-11 at 7 12 08 PM" src="https://user-images.githubusercontent.com/111642763/224517211-e340789b-25b6-46fc-8faa-175fc3c58ee1.png">
+<img width="731" alt="Screen Shot 2023-03-11 at 7 59 04 PM" src="https://user-images.githubusercontent.com/111642763/224518556-228fbff8-d60c-41ea-955c-d028b25f3516.png">
 
-A combination of numerical measures, categorical variables, and the creation of interaction terms improves the R-squared to 0.552.
+A combination of numerical measures, categorical variables, and the creation of an interaction term improves the R-squared to ~55%.
 
 ## Conclusion
-Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a certain property compares to the average home in King County. Compared to properties with standard features (average bathrooms, average area, average rating), high home grades have an extremely significant impact on price. Additionally, the value of an average home increases with certain "nice-to-have" amenities such as a waterfront and non-restricted sewer system. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
+Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a given property compares to the average home in King County. Compared to properties with standard features (average bathrooms, average area, average rating), high home grades have a statistically significant impact on price. Additionally, adjusting variables within a home that has certain "nice-to-have" amenities, such as a waterfront, has a greater impact on value. This is shown through the interaction term "sqft_living x waterfront_YES", which indicates that a unit increase in "sqft_living" for an average-sized home with a waterfront adds ~$538 instead of just $243. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
 
 ## Future Considerations
 * Using variables like "lat" and "long" to visualize the geographical distribution of homes would improve the model, as location is arguably the most important aspect of real estate
