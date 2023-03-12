@@ -5,7 +5,7 @@ Reducing information asymmetry in home prices
 ![rowan-heuvel-bjej8BY1JYQ-unsplash](https://user-images.githubusercontent.com/111642763/223301762-394731ca-4447-4c2f-a6fd-c9c8fef6dd33.jpg)
 
 ## Overview and Problem Statement
-This project focuses on leveraging data from the King County House Sales dataset to create a regression model that prices the average home within the region.
+This project focuses on leveraging data from the [King County House Sales dataset](https://info.kingcounty.gov/assessor/DataDownload/default.aspx) to create a regression model that prices the average home within the region.
 
 The scope of this project includes data cleaning, initial exploratory analysis, model improvement with additional or transformed variables, final recommendation, and overall evaluation.
 
