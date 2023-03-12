@@ -55,6 +55,8 @@ To account for other variables that may impact the price of homes in Kings Count
 
 In terms of the R-squared value, the second model is only slightly better than the first, with 41% of the variation in price accounted for. Similar to the baseline model, a home with an average living area and average number of bathrooms can expect to have a price tag of ~$1.22M. The new parameter value for "sqft_living" shows that under these conditions, an additional unit increase in SF living area increases price by ~$530. Additionally, the parameter for "bathrooms" conveys that an additional bathroom in the home raises the value by ~$143K.
 
+Note that these observations are in reference to average values, as the data has been centered.
+
 ### Third Model (Categorical Predictor)
 During the early exploration stage, only numerical predictors were considered. The third model builds on the second by incrementally incorporating categorical variables, starting with "grade", to assess the impact of a home's rating on its price. To avoid multicollinearity, we perform one-hot-encoding and drop the column "grade_7 Average". A home grade of 7 becomes the reference category. Results are shown below:
 
