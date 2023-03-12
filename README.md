@@ -119,15 +119,15 @@ Homebuyers and homesellers who are looking for price guidance can refer to the r
 * Normalizing the data can better standardize the model's independent variables
 
 ## Additional Information
-For detailed copy of the data analysis process and related code, please refer to the [Jupyter Notebook](). A summary of findings can also be found in this deliverable.
+For detailed copy of the data analysis process and related code, please refer to the [Jupyter Notebook](https://github.com/keziasetokusumo/p2_project/blob/main/KC_Analysis_Notebook.ipynb). A summary of findings can also be found in this deliverable.
 
 ## Data Sources
 This analysis uses sales data of homes within King County. The region has a comprehensive database of properties in the area, and public information can be found [here](https://kingcounty.gov/services/data.aspx).
 
 ## Repository Structure
 ```
-├── README.md                              
-├── notebooks                            
+├── data                             
+├── README.md                            
 ├── data                                      
 └── images                                    
 ```
