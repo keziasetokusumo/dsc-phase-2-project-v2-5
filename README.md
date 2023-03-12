@@ -106,7 +106,7 @@ A final model is constructed using the original four regressions to create inter
 
 <img width="302" alt="Screen Shot 2023-03-11 at 7 59 08 PM" src="https://user-images.githubusercontent.com/111642763/224518550-f1439a29-4423-423a-b58e-ff17bef52c41.png">
 
-Lastly, the summary table of the final model is generated:
+Considering that these variables are statistically significant, we pass them through statsmodels to create the final summary output:
 
 <img width="731" alt="Screen Shot 2023-03-11 at 7 59 04 PM" src="https://user-images.githubusercontent.com/111642763/224518556-228fbff8-d60c-41ea-955c-d028b25f3516.png">
 
