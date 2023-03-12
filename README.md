@@ -93,7 +93,7 @@ To recap, the variables with p-values > 0.05 are the ones representing grades 2-
 
 Starting with the left graph, we can interpret that the darker hues tend to be more spread out and the lighter hues are clustered around the left/bottom. Lighter hues have low home grades, which we previously concluded has minimal impact on the model run.
 
-Looking at the right graph, we can also see that points on the graph primarily represent public and private sewer systems that are not restricted.
+Looking at the right graph, we can also see that points on the graph primarily represent public and private sewer systems that are not restricted. There is no visible price variation for the restricted systems.
 
 Overall, we can see how the less favorable variables of low home grades and restricted sewer systems have a minimal impact on price when compared to a home with average features. This logical conclusion can be drawn from the regression models and visualizations above.
 
