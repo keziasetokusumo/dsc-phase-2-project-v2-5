@@ -1,11 +1,11 @@
-# Home Values in Kings County
+# Home Values in King County
 
 Reducing information asymmetry in home prices
 
 ![rowan-heuvel-bjej8BY1JYQ-unsplash](https://user-images.githubusercontent.com/111642763/223301762-394731ca-4447-4c2f-a6fd-c9c8fef6dd33.jpg)
 
 ## Overview and Problem Statement
-The focus for this project is to use data from the Kings County House Sales dataset to create a regression model that projects the sale price of properties in the area.
+The focus for this project is to use data from the King County House Sales dataset to create a regression model that projects the sale price of properties in the area.
 
 The scope of this project includes data cleaning, initial exploratory analysis, model improvement with additional or transformed variables, final recommendation, and overall evaluation.
 
@@ -19,7 +19,7 @@ The data folder in the repository contains the file kc_house_data.csv, which is 
 <img width="1095" alt="Screen Shot 2023-03-04 at 6 13 39 PM" src="https://user-images.githubusercontent.com/111642763/222932863-70c7cdf6-0b98-4258-8539-fb0dc4810d5b.png">
 
 ## Methods
-Analysis of home prices in Kings County begins with a baseline regression model. Using the correlation function, an initial predictor is selected. In this case, a baseline regression model is run to show the relationship between home prices ("price") and living area ("sqft_living"). Data cleaning takes place at this stage to exclude homes built before 1980, and centering is performed to make the values of "sqft_living" around its mean. After the parameters from the baseline results are evaluated, another numerical predictor is added to create a second model. After two models with only numerical predictors have been run, a third and fourth model containing categorical variables is created to improve the analysis. Throughout the creation of the four models, different variables were tested to determine which ones were statistically significant. The final model builds on the fourth regression (a combination of numerical and categorical predictors) by including interaction terms. The variables in the fourth model are tested for interaction effects, and statistically significant terms are incorporated to construct the fifth and final model.
+Analysis of home prices in King County begins with a baseline regression model. Using the correlation function, an initial predictor is selected. In this case, a baseline regression model is run to show the relationship between home prices ("price") and living area ("sqft_living"). Data cleaning takes place at this stage to exclude homes built before 1980, and centering is performed to make the values of "sqft_living" around its mean. After the parameters from the baseline results are evaluated, another numerical predictor is added to create a second model. After two models with only numerical predictors have been run, a third and fourth model containing categorical variables is created to improve the analysis. Throughout the creation of the four models, different variables were tested to determine which ones were statistically significant. The final model builds on the fourth regression (a combination of numerical and categorical predictors) by including interaction terms. The variables in the fourth model are tested for interaction effects, and statistically significant terms are incorporated to construct the fifth and final model.
 
 ## Results
 
@@ -83,7 +83,7 @@ The fourth model accounts for ~54% of the variance in sale price and models agai
 Based on the constant coefficient, a home with the aforementioned features can be expected to have a sale price around $941K. With the additional variables, homes with restricted sewer systems lack a statistically significant impact. Of the additional variables, "waterfront_YES" and "sewer_system_PRIVATE" have p-values < 0.05, and they are associated with a $1.45M and -$150K change in sale price, respectively.
 
 ### Summarizing the four models
-Iterating through the four regressions have shown us that certain variables do not create a statistically significant difference on home prices in Kings County. Through multiple linear regression and one-hot-encoding with categories, the predictors that do not contribute to the model tend to be ones that are less favorable in a home.
+Iterating through the four regressions have shown us that certain variables do not create a statistically significant difference on home prices in King County. Through multiple linear regression and one-hot-encoding with categories, the predictors that do not contribute to the model tend to be ones that are less favorable in a home.
 
 To recap, the variables with p-values > 0.05 are the ones representing grades 2-6 and restricted sewer systems. To better understand this observation, two seaborn visualizations showing the relationship between "price" and "sqft_living" with hues based on "grade" and "sewer_system" were created:
 
@@ -99,4 +99,35 @@ To refresh, below is a dataframe summarizing all the regression models that have
 
 <img width="607" alt="Screen Shot 2023-03-11 at 11 25 33 AM" src="https://user-images.githubusercontent.com/111642763/224495862-9f43175a-a6bd-4e35-a481-7e5640f080f5.png">
 
-### Final Model 
+### Final Model
+A final model is constructed using the original four regressions to create interaction terms with the relevant predictors. The original numerical predictor "sqft_living" is used to create an interaction term with one dummy variable from each of the categorical predictors. A new dataframe is created, and each interaction term is tested for statistical significance. A final table showing the statistically significant variables thus far and the new interaction terms are shown below:
+
+<img width="297" alt="Screen Shot 2023-03-11 at 7 10 38 PM" src="https://user-images.githubusercontent.com/111642763/224517177-2c9fe651-ec37-4009-85f0-d1e92982ace7.png">
+
+Lastly, the summary table of the final model is generated:
+
+<img width="738" alt="Screen Shot 2023-03-11 at 7 12 08 PM" src="https://user-images.githubusercontent.com/111642763/224517211-e340789b-25b6-46fc-8faa-175fc3c58ee1.png">
+
+A combination of numerical measures, categorical variables, and the creation of interaction terms improves the R-squared to 0.552.
+
+## Conclusion
+Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a certain property compares to the average home in King County. Compared to properties with standard features (average bathrooms, average area, average rating), high home grades have an extremely significant impact on price. Additionally, the value of an average home increases with certain "nice-to-have" amenities such as a waterfront and non-restricted sewer system. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
+
+## Future Considerations
+* Using variables like "lat" and "long" to visualize the geographical distribution of homes would improve the model, as location is arguably the most important aspect of real estate
+* Leveraging population and socioeconomic data can provide insight into the typical homebuyer in the King County region
+* Normalizing the data can better standardize the model's independent variables
+
+## Additional Information
+For detailed copy of the data analysis process and related code, please refer to the [Jupyter Notebook](). A summary of findings can also be found in this deliverable.
+
+## Data Sources
+This analysis uses sales data of homes within King County. The region has a comprehensive database of properties in the area, and public information can be found [here](https://kingcounty.gov/services/data.aspx).
+
+## Repository Structure
+```
+├── README.md                              
+├── notebooks                            
+├── data                                      
+└── images                                    
+```
