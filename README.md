@@ -128,7 +128,8 @@ This analysis uses sales data of homes within King County. The region has a comp
 ```
 ├── data
 ├── images  
-├──                            
-├── README.md                                      
-└── KC_Analysis_Notebook.ipynb                                    
+├── .gitignore                           
+├── KC_Analysis_Notebook.ipynb                                      
+├── README.md    
+└──
 ```
