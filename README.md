@@ -14,7 +14,34 @@ The goal is to derive a model that helps the general public determine how a cert
 ## The Data
 The data folder in the repository contains the file kc_house_data.csv, which is the King County House Sales dataset. The folder also contains a description of the columns in the dataset. Below is a list of the columns' names and a preview of the first few rows in the dataset:
 
-<img width="1003" alt="Screen Shot 2023-03-04 at 4 24 33 PM" src="https://user-images.githubusercontent.com/111642763/222929311-6be712a1-9d57-4aba-91e4-4b6b94f03d0c.png">
+* `id` - Unique identifier for a house
+* `date` - Date house was sold
+* `price` - Sale price (prediction target)
+* `bedrooms` - Number of bedrooms
+* `bathrooms` - Number of bathrooms
+* `sqft_living` - Square footage of living space in the home
+* `sqft_lot` - Square footage of the lot
+* `floors` - Number of floors (levels) in house
+* `waterfront` - Whether the house is on a waterfront
+  * Includes Duwamish, Elliott Bay, Puget Sound, Lake Union, Ship Canal, Lake Washington, Lake Sammamish, other lake, and river/slough waterfronts
+* `greenbelt` - Whether the house is adjacent to a green belt
+* `nuisance` - Whether the house has traffic noise or other recorded nuisances
+* `view` - Quality of view from house
+  * Includes views of Mt. Rainier, Olympics, Cascades, Territorial, Seattle Skyline, Puget Sound, Lake Washington, Lake Sammamish, small lake / river / creek, and other
+* `condition` - How good the overall condition of the house is. Related to maintenance of house.
+* `grade` - Overall grade of the house. Related to the construction and design of the house.
+* `heat_source` - Heat source for the house
+* `sewer_system` - Sewer system for the house
+* `sqft_above` - Square footage of house apart from basement
+* `sqft_basement` - Square footage of the basement
+* `sqft_garage` - Square footage of garage space
+* `sqft_patio` - Square footage of outdoor porch or deck space
+* `yr_built` - Year when house was built
+* `yr_renovated` - Year when house was renovated
+* `address` - The street address
+* `lat` - Latitude coordinate
+* `long` - Longitude coordinate
+
 
 <img width="1095" alt="Screen Shot 2023-03-04 at 6 13 39 PM" src="https://user-images.githubusercontent.com/111642763/222932863-70c7cdf6-0b98-4258-8539-fb0dc4810d5b.png">
 
@@ -46,8 +73,8 @@ A graph displaying "sqft_living" along the x-axis and "price" along the y-axis i
 
 Note that living area data has been centered around its mean, hence the negative values on the x-axis in the graph above.
 
-### Second Model (Numerical Predictors Only)
-To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, "bathrooms" is selected for the next run to create a multiple regression model. The "bathrooms" column is also centered around the mean to make the data more interpretable later. The below dataframe is passed into statsmodels to generate a new summary table:
+### Second Model (Multiple Regression Model)
+To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, "bathrooms" is a discrete predictor selected for the multiple regression model. Its data is also centered. The below dataframe is passed into statsmodels to generate a new summary table:
 
 <img width="242" alt="Screen Shot 2023-03-08 at 9 11 27 PM" src="https://user-images.githubusercontent.com/111642763/223897809-40f15d11-a0f9-483c-8e2b-284a45905acb.png">
 
@@ -55,34 +82,36 @@ To account for other variables that may impact the price of homes in Kings Count
 
 In terms of the R-squared value, the second model is only slightly better than the first, with 41% of the variation in price accounted for. Similar to the baseline model, a home with an average living area and average number of bathrooms can expect to have a price tag of ~$1.22M. The new parameter value for "sqft_living" shows that under these conditions, an additional unit increase in SF living area increases price by ~$530. Additionally, the parameter for "bathrooms" conveys that an additional bathroom in the home raises the value by ~$143K.
 
-Note that these observations are in reference to average values, as the data has been centered.
+Note that these observations are in reference to average/median values, as the data has been centered.
 
-### Third Model (Categorical Predictor)
-During the early exploration stage, only numerical predictors were considered. The third model builds on the second by incrementally incorporating categorical variables, starting with "grade", to assess the impact of a home's rating on its price. To avoid multicollinearity, we perform one-hot-encoding and drop the column "grade_7 Average". A home grade of 7 becomes the reference category. Results are shown below:
+### Third Model (Multiple Regression Model Cont.)
+The third model builds on the second by incorporating `grade`, to assess the impact of a home's rating on its price. `grade` is another discrete variable in the form of a string that we hypothesize has an influence on price levels. Since its column is not numerical, we need to map its values with the corresponding rating number.
 
-<img width="750" alt="Screen Shot 2023-03-11 at 10 05 43 AM" src="https://user-images.githubusercontent.com/111642763/224491940-699e7522-2176-4746-b621-5bb51ec082ce.png">
+Once mapping has been done with dictionaries, we can visualize the impact of `grade` on `price`:
 
-Homes with grades 2 to 6 inclusive are not statistically significant, as p-values are >0.05. This suggests that for homes of substandard to low average quality, there is an insignificant impact on the selling price, which makes sense in this scenario.
+<img width="580" alt="Screen Shot 2023-03-13 at 7 07 42 AM" src="https://user-images.githubusercontent.com/111642763/224684741-f5cb6d31-c060-4aca-b4d8-6dacb5fc4b6f.png">
 
-Since we dropped grade_7 Average and used it as the reference category, the model indicates that a home with an average grade, average living area, and average number of bathrooms sells for around $927K (the constant). Additionally, a unit increase in "sqft_living" and "bathrooms" is expected to increase the value of the average home by $250 and $138K, respectively.
+`grade` data is then centered and passed through statsmodels to generate the summary below:
 
-Overall, the third model accounts for 51% of the variance in price.
+<img width="599" alt="Screen Shot 2023-03-13 at 6 55 01 AM" src="https://user-images.githubusercontent.com/111642763/224681789-fd35f10d-1309-4013-b2b9-b23840ede069.png">
 
-### Fourth Model (Remaining Categorical Predictors)
-Other categorical variables that were deemed relevant during the initial data exploration are included in the fourth model. We have utilized "waterfront" and "sewer_system". Similar to the third model, one-hot-encoding is done and one dummy column per categorical predictor is excluded to avoid multicollinearity.
+Our new model is better at accounting for price variance than the previous two. Now we can asssess the impact of `grade` on price and we can infer from the results that when an increase in rating to the average home leads to a rise in price of ~$317K.
 
-In this run, we have dropped the variables from model 3 that did not make a statistically significant difference on home price. The summary printout is as follows:
+### Fourth Model (Categorical Predictors)
+Categorical variables that we expect to be relevant are included in the fourth model. We have utilized `waterfront` and `view`. We dummify these categories, conduct one-hot-encoding, and drop one column per category to avoid multicollinearity.
 
-<img width="839" alt="Screen Shot 2023-03-11 at 10 24 30 AM" src="https://user-images.githubusercontent.com/111642763/224492853-29ce25d4-1eac-4030-9c18-4835c64397a1.png">
+The summary printout is as follows:
 
-The fourth model accounts for ~54% of the variance in sale price and models against a reference home with the following features:
+<img width="631" alt="Screen Shot 2023-03-13 at 7 25 30 AM" src="https://user-images.githubusercontent.com/111642763/224688599-a1f2483a-e374-4396-8311-473b3ec78343.png">
+
+The fourth model accounts for 51.1% of the variance in sale price and models against a reference home with the following features:
 * Average living area
 * Average number of bathrooms
-* Home grade of 7 (average)
+* Average grade
+* Average views
 * No waterfront
-* A public sewer system
 
-Based on the constant coefficient, a home with the aforementioned features can be expected to have a sale price around $941K. With the additional variables, homes with restricted sewer systems lack a statistically significant impact. Of the additional variables, "waterfront_YES" and "sewer_system_PRIVATE" have p-values < 0.05, and they are associated with a $1.45M and -$150K change in sale price, respectively.
+Based on the constant coefficient, a home with the aforementioned features can be expected to have a sale price around $1.13 Million. With the additional variables, homes with good views or no views lack a statistically significant impact. Of the additional variables, fair and excellent views have p-values < 0.05, and they are associated with a $313M and $982K change in sale price, respectively.
 
 ### Summarizing the four models
 Iterating through the four regressions have shown us that certain variables do not create a statistically significant difference on home prices in King County. Through multiple linear regression and one-hot-encoding with categories, the predictors that do not contribute to the model tend to be ones that are less favorable in a home.
@@ -102,7 +131,7 @@ To refresh, below is a dataframe summarizing all the regression models that have
 <img width="607" alt="Screen Shot 2023-03-11 at 11 25 33 AM" src="https://user-images.githubusercontent.com/111642763/224495862-9f43175a-a6bd-4e35-a481-7e5640f080f5.png">
 
 ### Final Model
-A final model is constructed using the original four regressions to create interaction terms with the relevant predictors. The original numerical predictor "sqft_living" is used to create an interaction term with the remaining dummy variable from "waterfront". A new dataframe is created, and a final table showing the statistically significant term and variables are shown below:
+A final model is constructed using the original four regressions to create interaction terms with the relevant predictors. The original numerical predictor `sqft_living` is used to create an interaction term with the remaining dummy variable from `waterfront`. A new dataframe is created, and a final table showing the statistically significant term and variables are shown below:
 
 <img width="302" alt="Screen Shot 2023-03-11 at 7 59 08 PM" src="https://user-images.githubusercontent.com/111642763/224518550-f1439a29-4423-423a-b58e-ff17bef52c41.png">
 
@@ -110,7 +139,7 @@ Considering that these variables are statistically significant, we pass them thr
 
 <img width="731" alt="Screen Shot 2023-03-11 at 7 59 04 PM" src="https://user-images.githubusercontent.com/111642763/224518556-228fbff8-d60c-41ea-955c-d028b25f3516.png">
 
-A combination of numerical measures, categorical variables, and an interaction term improves the R-squared to ~55%.
+A combination of numerical measures, categorical variables, and an interaction term improves the R-squared to 52.4%.
 
 ## Conclusion
 Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a given property compares to the average home in King County. Compared to properties with standard features (average bathrooms, average area, average rating), high home grades have a statistically significant impact on price. Additionally, adjusting variables within a home that has certain "nice-to-have" amenities, such as a waterfront, has a greater impact on value. This is shown through the interaction term "sqft_living x waterfront_YES", which indicates that a unit increase in "sqft_living" for an average-sized home with a waterfront adds ~$538 instead of just $243. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
