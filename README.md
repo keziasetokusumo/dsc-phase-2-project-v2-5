@@ -131,21 +131,21 @@ To refresh, below is a dataframe summarizing all the regression models that have
 <img width="607" alt="Screen Shot 2023-03-11 at 11 25 33 AM" src="https://user-images.githubusercontent.com/111642763/224495862-9f43175a-a6bd-4e35-a481-7e5640f080f5.png">
 
 ### Final Model
-A final model is constructed using the original four regressions to create interaction terms with the relevant predictors. The original numerical predictor `sqft_living` is used to create an interaction term with the remaining dummy variable from `waterfront`. A new dataframe is created, and a final table showing the statistically significant term and variables are shown below:
+A final model is constructed using the original four regressions to create an interaction term. The original numerical predictor `sqft_living` is used to create an interaction term with the remaining dummy variable from `waterfront`. A new dataframe is created, and a final table showing the statistically significant term and variables are shown below:
 
-<img width="302" alt="Screen Shot 2023-03-11 at 7 59 08 PM" src="https://user-images.githubusercontent.com/111642763/224518550-f1439a29-4423-423a-b58e-ff17bef52c41.png">
+<img width="289" alt="Screen Shot 2023-03-13 at 7 31 46 AM" src="https://user-images.githubusercontent.com/111642763/224690037-9ddd9f80-bff3-4491-9136-265257aa0bf5.png">
 
 Considering that these variables are statistically significant, we pass them through statsmodels to create the final summary output:
 
-<img width="731" alt="Screen Shot 2023-03-11 at 7 59 04 PM" src="https://user-images.githubusercontent.com/111642763/224518556-228fbff8-d60c-41ea-955c-d028b25f3516.png">
+<img width="735" alt="Screen Shot 2023-03-13 at 7 22 32 AM" src="https://user-images.githubusercontent.com/111642763/224690119-1d5c9fd0-13aa-4351-ba63-0613caedcdc3.png">
 
 A combination of numerical measures, categorical variables, and an interaction term improves the R-squared to 52.4%.
 
 ## Conclusion
-Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a given property compares to the average home in King County. Compared to properties with standard features (average bathrooms, average area, average rating), high home grades have a statistically significant impact on price. Additionally, adjusting variables within a home that has certain "nice-to-have" amenities, such as a waterfront, has a greater impact on value. This is shown through the interaction term "sqft_living x waterfront_YES", which indicates that a unit increase in "sqft_living" for an average-sized home with a waterfront adds ~$538 instead of just $243. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
+Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a given property compares to the average home in King County. The model prices the typical home with standard features at ~$1.2 Million. Additionally, adjusting variables within a home that has certain "nice-to-have" amenities, such as a waterfront, has a greater impact on value. This is shown through the interaction term `sqft_living x waterfront_YES`, which indicates that a unit increase in `sqft_living` for an average-sized home with a waterfront adds ~$629 instead of just $269. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
 
 ## Future Considerations
-* Using variables like "lat" and "long" to visualize the geographical distribution of homes would improve the model, as location is arguably the most important aspect of real estate
+* Using variables like `lat` and `long` to visualize the geographical distribution of homes would improve the model, as location is arguably the most important aspect of real estate
 * Leveraging population and socioeconomic data can provide insight into the typical homebuyer in the King County region
 * Normalizing the data can better standardize the model's independent variables
 
