@@ -23,11 +23,9 @@ The data folder in the repository contains the file kc_house_data.csv, which is 
 * `sqft_lot` - Square footage of the lot
 * `floors` - Number of floors (levels) in house
 * `waterfront` - Whether the house is on a waterfront
-  * Includes Duwamish, Elliott Bay, Puget Sound, Lake Union, Ship Canal, Lake Washington, Lake Sammamish, other lake, and river/slough waterfronts
 * `greenbelt` - Whether the house is adjacent to a green belt
 * `nuisance` - Whether the house has traffic noise or other recorded nuisances
 * `view` - Quality of view from house
-  * Includes views of Mt. Rainier, Olympics, Cascades, Territorial, Seattle Skyline, Puget Sound, Lake Washington, Lake Sammamish, small lake / river / creek, and other
 * `condition` - How good the overall condition of the house is. Related to maintenance of house.
 * `grade` - Overall grade of the house. Related to the construction and design of the house.
 * `heat_source` - Heat source for the house
