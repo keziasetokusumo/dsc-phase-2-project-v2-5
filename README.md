@@ -12,7 +12,7 @@ The scope of this project includes data cleaning, initial exploratory analysis, 
 The goal is to derive a model that helps the general public determine how a certain property should sell compared to the typical home. The model should act as a guide for property buyers and sellers in the area so they can pinpoint attributes of a home that they should emphasize when negotiating prices.
 
 ## The Data
-The data folder in the repository contains the file kc_house_data.csv, which is the King County House Sales dataset. The folder also contains a description of the columns in the dataset. Below is a list of the columns' names and a preview of the first few rows in the dataset:
+The data folder in the repository contains the file `kc_house_data.csv`, which is the King County House Sales dataset. The folder also contains a description of the columns in the dataset. Below is a list of the columns' names and a preview of the first few rows in the dataset:
 
 * `id` - Unique identifier for a house
 * `date` - Date house was sold
