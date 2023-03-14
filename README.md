@@ -113,6 +113,10 @@ The fourth model accounts for 51.1% of the variance in sale price and models aga
 
 Based on the constant coefficient, a home with the aforementioned features can be expected to have a sale price around $1.13 Million. With the additional variables, homes with good views or no views lack a statistically significant impact. Of the additional variables, fair and excellent views have p-values < 0.05, and they are associated with a $313M and $982K change in sale price, respectively.
 
+To summarize all the regression models that we have run so far, refer to this table below:
+
+<img width="492" alt="Screen Shot 2023-03-13 at 7 23 29 AM" src="https://user-images.githubusercontent.com/111642763/224878833-2553e933-67a5-43b3-a4c4-4349bc1646c4.png">
+
 ### Final Model (Interaction Term)
 A final model is constructed using the original four regressions to create an interaction term. The original numerical predictor `sqft_living` is used to create an interaction term with the remaining dummy variable from `waterfront`. A new dataframe is created, and a final table showing the statistically significant term and variables are shown below:
 
