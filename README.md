@@ -44,7 +44,7 @@ The data folder in the repository contains the file kc_house_data.csv, which is 
 <img width="1095" alt="Screen Shot 2023-03-04 at 6 13 39 PM" src="https://user-images.githubusercontent.com/111642763/222932863-70c7cdf6-0b98-4258-8539-fb0dc4810d5b.png">
 
 ## Methods
-Analysis of home prices in King County begins with a baseline regression model. Using the correlation function, an initial predictor is selected. In this case, a baseline regression model is run to show the relationship between home prices ("price") and living area ("sqft_living"). Data cleaning takes place at this stage to exclude homes built before 1980, and centering is performed to make the values of "sqft_living" and "bathrooms" around its mean. After the parameters from the baseline results are evaluated, another numerical predictor is added to create a second model. After two models with only numerical predictors have been run, a third and fourth model containing categorical variables is created to improve the analysis. Throughout the creation of the four models, different variables were tested to determine which ones were statistically significant. The final model builds on the fourth regression (a combination of numerical and categorical predictors) by including interaction terms. The variables in the fourth model are tested for interaction effects, and statistically significant terms are incorporated to construct the fifth and final model.
+Analysis of home prices in King County begins with a baseline regression model. Using the correlation function, an initial predictor is selected. In this case, a baseline regression model is run to show the relationship between home prices (`price`) and living area (`sqft_living`). Data cleaning takes place at this stage to exclude homes built before 1980, and centering is performed to make the values of `sqft_living` and `bathrooms` around its mean. After the parameters from the baseline results are evaluated, another numerical predictor is added to create a second model. After two models with only numerical predictors have been run, a third and fourth model containing categorical variables is created to improve the analysis. Throughout the creation of the four models, different variables were tested to determine which ones were statistically significant. The final model builds on the fourth regression (a combination of numerical and categorical predictors) by including interaction terms. The variables in the fourth model are tested for interaction effects, and statistically significant terms are incorporated to construct the fifth and final model.
 
 ## Results
 
@@ -54,31 +54,31 @@ A correlation heatmap is first generated to identify which variable might serve 
 
 <img width="872" alt="Screen Shot 2023-03-06 at 9 21 27 PM" src="https://user-images.githubusercontent.com/111642763/223302941-f4bde8db-dbf2-4714-97ab-c6e48555a48c.png">
 
-Based on the heatmap, a baseline model showing the relationship between "sqft_living" and "price" is run, as these two variables have the highest correlation (0.64). A baseline model that centers "sqft_living" around its mean is created. The summary of the results and a basic visualization are shown below.
+Based on the heatmap, a baseline model showing the relationship between `sqft_living` and `price` is run, as these two variables have the highest correlation (0.64). A baseline model that centers `sqft_living` around its mean is created. The summary of the results and a basic visualization are shown below.
 
 <img width="667" alt="Screen Shot 2023-03-06 at 9 24 01 PM" src="https://user-images.githubusercontent.com/111642763/223303635-6e5961f4-2b3c-482d-b268-9b24e8beed31.png">
 
 The following interpretations can be made from the summary:
 * 40.5% of the variation in price can be explained by the baseline model
-* The p-values for the parameters "const" and "sqft_living" are less than 0.05, indicating their statistical significance
+* The p-values for the parameters `const` and `sqft_living` are less than 0.05, indicating their statistical significance
 * The overall model also has a p-value < 0.05; hence, it can be interpreted to be statistically significant
-* The coefficient value for "sqft_living" suggests that a unit increase in SF living area corresponds to an increase in home price by ~$609
-* The "const" value suggests that we can expect a home with average living area to sell for ~$1.22M
+* The coefficient value for `sqft_living` suggests that a unit increase in SF living area corresponds to an increase in home price by ~$609
+* The `const` value suggests that we can expect a home with average living area to sell for ~$1.22M
 
-A graph displaying "sqft_living" along the x-axis and "price" along the y-axis is shown below:
+A graph displaying `sqft_living` along the x-axis and `price` along the y-axis is shown below:
 
 <img width="661" alt="Screen Shot 2023-03-06 at 9 27 19 PM" src="https://user-images.githubusercontent.com/111642763/223303749-9a1c879c-26a8-4597-872f-8e3b1ba585fd.png">
 
 Note that living area data has been centered around its mean, hence the negative values on the x-axis in the graph above.
 
 ### Second Model (Multiple Regression Model)
-To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, "bathrooms" is a discrete predictor selected for the multiple regression model. Its data is also centered. The below dataframe is passed into statsmodels to generate a new summary table:
+To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, `bathrooms` is a discrete predictor selected for the multiple regression model. Its data is also centered. The below dataframe is passed into statsmodels to generate a new summary table:
 
 <img width="242" alt="Screen Shot 2023-03-08 at 9 11 27 PM" src="https://user-images.githubusercontent.com/111642763/223897809-40f15d11-a0f9-483c-8e2b-284a45905acb.png">
 
 <img width="673" alt="Screen Shot 2023-03-08 at 9 12 34 PM" src="https://user-images.githubusercontent.com/111642763/223897961-1b9ea412-b5a9-48ea-a1f4-7eaa2fbf9364.png">
 
-In terms of the R-squared value, the second model is only slightly better than the first, with 41% of the variation in price accounted for. Similar to the baseline model, a home with an average living area and average number of bathrooms can expect to have a price tag of ~$1.22M. The new parameter value for "sqft_living" shows that under these conditions, an additional unit increase in SF living area increases price by ~$530. Additionally, the parameter for "bathrooms" conveys that an additional bathroom in the home raises the value by ~$143K.
+In terms of the R-squared value, the second model is only slightly better than the first, with 41% of the variation in price accounted for. Similar to the baseline model, a home with an average living area and average number of bathrooms can expect to have a price tag of ~$1.22M. The new parameter value for `sqft_living` shows that under these conditions, an additional unit increase in SF living area increases price by ~$530. Additionally, the parameter for `bathrooms` conveys that an additional bathroom in the home raises the value by ~$143K.
 
 Note that these observations are in reference to average/median values, as the data has been centered.
 
@@ -132,7 +132,6 @@ Homebuyers and homesellers who are looking for price guidance can refer to the r
 ## Future Considerations
 * Using variables like `lat` and `long` to visualize the geographical distribution of homes would improve the model, as location is arguably the most important aspect of real estate
 * Leveraging population and socioeconomic data can provide insight into the typical homebuyer in the King County region
-* Normalizing the data can better standardize the model's independent variables
 
 ## Additional Information
 For detailed copy of the data analysis process and related code, please refer to the [Jupyter Notebook](https://github.com/keziasetokusumo/p2_project/blob/main/KC_Analysis_Notebook.ipynb). A summary of findings can also be found in this [deliverable](https://github.com/keziasetokusumo/p2_project/blob/main/p2_project_deliverable.pdf).
