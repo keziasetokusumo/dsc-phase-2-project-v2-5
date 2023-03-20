@@ -143,6 +143,9 @@ The mean absolute error for the final model is 370183.43826478004, which is sign
 ## Conclusion
 Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a given property compares to the average home in King County. The model prices the typical home with standard features at ~$1.2 Million. Additionally, adjusting variables within a home that has certain "nice-to-have" amenities, such as a waterfront, has a greater impact on value. This is shown through the interaction term `sqft_living x waterfront_YES`, which indicates that a unit increase in `sqft_living` for an average-sized home with a waterfront adds ~$629 instead of just $269. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
 
+### Recommendation
+Homesellers interested in maximizing the value of their properties should aim to include at least one extra amenity (e.g. waterfront, excellent views), as additional features can greatly elevate values of the average property.
+
 ## Future Considerations
 * Using variables like `lat` and `long` to visualize the geographical distribution of homes would improve the model, as location is arguably the most important aspect of real estate
 * Leveraging population and socioeconomic data can provide insight into the typical homebuyer in the King County region
