@@ -67,9 +67,16 @@ The following interpretations can be made from the summary:
 
 A graph displaying `sqft_living` along the x-axis and `price` along the y-axis is shown below:
 
-<img width="661" alt="Screen Shot 2023-03-06 at 9 27 19 PM" src="https://user-images.githubusercontent.com/111642763/223303749-9a1c879c-26a8-4597-872f-8e3b1ba585fd.png">
+<img width="636" alt="Screen Shot 2023-03-20 at 7 19 00 AM" src="https://user-images.githubusercontent.com/111642763/226330973-ff557f44-5eb1-48ce-8df2-24141f713ee7.png">
 
 Note that living area data has been centered around its mean, hence the negative values on the x-axis in the graph above.
+
+### Baseline Model Error Metric
+We will calculate the mean absolute error for our simple linear regression to determine how wrong our model is on average when projecting prices.
+
+<img width="1097" alt="Screen Shot 2023-03-20 at 7 51 49 AM" src="https://user-images.githubusercontent.com/111642763/226331386-f0997972-2724-4005-ac33-273da8f1ee52.png">
+
+Our mean absolute error comes out to ~$423K. The MAE characterizes the difference between the model's prediction and the target value. For home prices, this value is quite large. We will aim to reduce the MAE over the next few iterations of the model and arrive at a lower MAE value for the final run.
 
 ### Second Model (Multiple Regression Model)
 To account for other variables that may impact the price of homes in Kings County, a second predictor is considered. Referencing the original correlation heatmap, `bathrooms` is a discrete predictor selected for the multiple regression model. Its data is also centered. The below dataframe is passed into statsmodels to generate a new summary table:
@@ -113,7 +120,7 @@ Based on the constant coefficient, a home with the aforementioned features can b
 
 To summarize all the regression models that we have run so far, refer to this table below:
 
-<img width="492" alt="Screen Shot 2023-03-13 at 7 23 29 AM" src="https://user-images.githubusercontent.com/111642763/224878833-2553e933-67a5-43b3-a4c4-4349bc1646c4.png">
+<img width="575" alt="Screen Shot 2023-03-20 at 7 50 22 AM" src="https://user-images.githubusercontent.com/111642763/226331119-e37541ba-fd07-423f-aaf1-5be922c0753b.png">
 
 ### Final Model (Interaction Term)
 A final model is constructed using the original four regressions to create an interaction term. The original numerical predictor `sqft_living` is used to create an interaction term with the remaining dummy variable from `waterfront`. A new dataframe is created, and a final table showing the statistically significant term and variables are shown below:
@@ -126,6 +133,13 @@ Considering that these variables are statistically significant, we pass them thr
 
 A combination of numerical measures, categorical variables, and an interaction term improves the R-squared to 52.4%.
 
+### Final Model Error Metric
+We will calculate the mean absolute error for our final regression model to determine how wrong our model is on average when projecting prices. We will compare this MAE with that of the baseline's.
+
+<img width="1093" alt="Screen Shot 2023-03-20 at 7 52 44 AM" src="https://user-images.githubusercontent.com/111642763/226331573-97978e34-f910-4141-b40a-7622e23dc26e.png">
+
+The mean absolute error for the final model is 370183.43826478004, which is significantly less than our baseline MAE of 423369.63912455307. Though there is still room for further improvement to reduce the average error from $370K, there is now a reduction in MAE by 12.56% compared to our initial run.
+
 ## Conclusion
 Homebuyers and homesellers who are looking for price guidance can refer to the regression models to determine how a given property compares to the average home in King County. The model prices the typical home with standard features at ~$1.2 Million. Additionally, adjusting variables within a home that has certain "nice-to-have" amenities, such as a waterfront, has a greater impact on value. This is shown through the interaction term `sqft_living x waterfront_YES`, which indicates that a unit increase in `sqft_living` for an average-sized home with a waterfront adds ~$629 instead of just $269. When looking to market a home or to determine a reasonable price range, sellers and buyers can refer to what has been outlined through the regression analyses.
 
@@ -134,7 +148,7 @@ Homebuyers and homesellers who are looking for price guidance can refer to the r
 * Leveraging population and socioeconomic data can provide insight into the typical homebuyer in the King County region
 
 ## Additional Information
-For detailed copy of the data analysis process and related code, please refer to the [Jupyter Notebook](https://github.com/keziasetokusumo/p2_project/blob/main/KC_Analysis_Notebook.ipynb). A summary of findings can also be found in this [deliverable](https://github.com/keziasetokusumo/p2_project/blob/main/p2_project_deliverable.pdf).
+Additional transformations to address key assumptions such as data linearity are outlined in the [Jupyter Notebook.](https://github.com/keziasetokusumo/p2_project/blob/main/KC_Analysis_Notebook.ipynb) The notebook also contains a detailed copy of the data analysis process and related code. Finally, a summary of findings can be found in this [deliverable](https://github.com/keziasetokusumo/p2_project/blob/main/p2_project_deliverable.pdf).
 
 ## Data Sources
 This analysis uses sales data of homes within King County. The region has a comprehensive database of properties in the area, and public information can be found [here](https://kingcounty.gov/services/data.aspx).
